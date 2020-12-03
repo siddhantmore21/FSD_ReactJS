@@ -1,21 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
+  
 
 
-class DishDetailComponent extends Component
-{
+  
 
-    formatDate(date)
-    {
-        return new Date(date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "numeric"
-          });
-    }
 
-   renderDish(dish)
+
+
+   function RenderDish({dish})
    {
 
     if (dish != null) {
@@ -36,21 +30,17 @@ class DishDetailComponent extends Component
     }
 }
 
-   renderComments(comments)
+ function  RenderComments({comments})
    {
     if (comments != null) {
 
         let list = comments.map((comments)=>{
 
-            
-            let date = comments.date
-            
-
             return(
                 <li key={comments.id} >
                     <div>
                         <p>{comments.comment}</p>
-                        <p>--{comments.author},{this.formatDate({date})}</p>
+                        <p>--{comments.author},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))}</p>
                     </div>
                 </li>
 
@@ -71,29 +61,39 @@ class DishDetailComponent extends Component
             <div></div>
         )
     }
-   }
-   render()
-   {
-       const selectedDish = this.props.dish;
-       return selectedDish?(
+}
+   
+   
+const DishDetail = (props) =>{
+    if(props.dish !=null)
+    {
+        return(
 
             <div className="container">
            <div className = "row">
                <div className = "col-12 col-md-5 m-1 ">
-                   {this.renderDish(selectedDish)}
-
+                   <RenderDish dish = {props.dish}/>
+   
                </div>
                <div className = "col-12 col-md-5 m-1 ">
-                    {this.renderComments(selectedDish.comments)}
+                   <RenderComments  comments = {props.dish.comments}/>
                </div>
-
+   
            </div>
            </div>
            
-       ):(
-           <div></div>
-       );
-   } 
+       )
+    }
+    else
+    {
+        return(
+            <div></div>
+        )
+    }   
 
-}
-export default DishDetailComponent;
+   }
+ 
+   
+
+
+export default DishDetail;
