@@ -3,7 +3,7 @@ import { Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle} from 'reacts
 function RenderCard({item})
 {
   return(
-    <Card>
+    <Card className="p-1 mt-1">
       <CardImg src={item.image} alt={item.name}/>
       <CardBody>
         <CardTitle>{item.name}</CardTitle>
