@@ -44,12 +44,13 @@ class Contact extends Component {
     {
         
         event.preventDefault();
+        alert(this.state.firstname + " "+this.state.lastname + " "+this.state.telnum+" " + this.state.email)
     }
 
     handleBlur = (field) => (evt) => 
     {
         this.setState({
-            touched: { ... this.state.touched, [field]:true}
+            touched: { ...this.state.touched, [field]:true}
         });
     }
 
@@ -76,7 +77,7 @@ class Contact extends Component {
         const reg = /^\d+$/;
         if(this.state.touched.telnum && !reg.test(telnum))
         {errors.telnum = 'Tel. Number must contain only Numbers'}
-        else if(this.state.touched.telnum && telnum.length != 10)
+        else if(this.state.touched.telnum && telnum.length !== 10)
         {errors.telnum = 'Tel. Number must be of exact 10 digits'}
 
 
@@ -125,7 +126,7 @@ class Contact extends Component {
                     <div className="col-12 col-sm-11 offset-sm-1">
                         <div className="btn-group" role="group">
                             <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
-                            <a role="button" className="btn btn-info"><i className="fa fa-skype"></i> Skype</a>
+                            <a role="button" className="btn btn-info" href="/"><i className="fa fa-skype"></i> Skype</a>
                             <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</a>
                         </div>
                     </div>
