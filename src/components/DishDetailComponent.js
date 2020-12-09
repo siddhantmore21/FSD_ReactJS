@@ -4,7 +4,7 @@ import {Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem
 import {Link} from 'react-router-dom';
 import {Control, LocalForm, Errors } from 'react-redux-form';
 import {Loading} from './LoadingComponent';
-
+import {BASE_URL } from '../shared/baseUrl';
   
 
 
@@ -125,7 +125,7 @@ class CommentForm extends Component
     if (dish != null) {
         return(
             <Card>
-                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                <CardImg width="100%" src={BASE_URL +  dish.image} alt={dish.name} />
                 <CardBody>
                     <CardTitle><h4>{dish.name}</h4></CardTitle>
                     <CardText>{dish.description}</CardText>
